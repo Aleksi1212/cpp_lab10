@@ -45,15 +45,13 @@ void test_generator(UniqueRng ur, int count)
     cout << "Generating numbers:" << endl;
     vector<int> numbers;
 
-    int generated = 0;
     for (int i = 0; i < count; ++i) {
         try {
             numbers.push_back(ur());
-            ++generated;
         } catch(const runtime_error& e) {
-            cerr<< e.what()
+            cerr<< "Exception: " << e.what()
                 << " Tried to generate " << count << " random numbers."
-                << " Got only " << generated
+                << " Got only " << numbers.size()
                 << '\n';
             return;
         }
