@@ -15,7 +15,6 @@ class UniqueRng {
             iota(v.begin(), v.end(), min);
 
             availableNumbers = v;
-
         }
         int operator()() noexcept(false);
     private:
@@ -31,12 +30,12 @@ int UniqueRng::operator()()
     if (availableNumbers.empty()) {
         throw runtime_error("Unable to produce unique random.");
     }
-
     
     int number = rand() % range + min;
     numbers.push_back(number);
-
-    availableNumbers.erase(find(availableNumbers.begin(), availableNumbers.end(), number));
+    availableNumbers.erase(
+        find(availableNumbers.begin(), availableNumbers.end(), number)
+    );
 
     return number;
 }
